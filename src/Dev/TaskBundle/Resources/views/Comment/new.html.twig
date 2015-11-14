@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+{{ form.vars.value.commentContent }}
+<div>
+    <p>Treść komentarza: {{ comment.commentContent }}</p>
+    <p>Data: {{ comment.commentDate|date('Y-m-d') }}</p>
+<div>

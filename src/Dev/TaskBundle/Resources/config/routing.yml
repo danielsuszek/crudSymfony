@@ -19,3 +19,9 @@ task_update:
 task_delete:
     path:     /delete/{id}
     defaults: { _controller: DevTaskBundle:Task:delete }    
+comment_new:
+    path:     /newComment
+    defaults: { _controller: DevTaskBundle:Comment:new }
+comment_success:
+    path: /comment_success
+    defaults: { _controller: DevTaskBundle:Comment:success }
