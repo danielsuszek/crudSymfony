@@ -3,7 +3,9 @@
 {{ form_end(form) }}
 
 {{ form.vars.value.commentContent }}
-<div>
-    <p>Treść komentarza: {{ comment.commentContent }}</p>
-    <p>Data: {{ comment.commentDate|date('Y-m-d') }}</p>
+<div>    
+    {% if comment is defined %}
+    <p>Treść komentarza: {{ comment.commentContent }}</p>    
+    <p>Data: {{ comment.commentDate|date('d-m-Y') }}</p>
+    {% endif %}        
 <div>
