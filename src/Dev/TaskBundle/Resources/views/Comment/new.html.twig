@@ -1,11 +1,34 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
 {{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+    {{ form_errors(form) }}
 
-{{ form.vars.value.commentContent }}
+    <div>
+        {{ form_label(form.commentContent) }}
+        {{ form_errors(form.commentContent) }}
+        {{ form_widget(form.commentContent) }}
+    </div>
+    <div>
+        {{ form_label(form.commentDate) }}
+        {{ form_errors(form.commentDate) }}
+        {{ form_widget(form.commentDate) }}
+    </div>
+    <div>
+        {{ form_widget(form.save) }}
+    </div>
+{{ form_end(form) }}
+<div>
+    <p>form.vars.value.commentContent {{ form.vars.value.commentContent }}</p>
+    {# <p>test: {{ test }}</p> #}
+</div>
 <div>    
     {% if comment is defined %}
     <p>Treść komentarza: {{ comment.commentContent }}</p>    
     <p>Data: {{ comment.commentDate|date('d-m-Y') }}</p>
     {% endif %}        
 <div>
+{# HTML 5 client-side validation disable #}    
+{# {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }} #}
+
+
+{% endblock %}

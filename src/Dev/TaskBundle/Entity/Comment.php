@@ -79,7 +79,7 @@ class Comment
      * @return Comment
      */
     public function setCommentDate($commentDate)
-    {
+    {        
         $this->commentDate = $commentDate;
 
         return $this;
