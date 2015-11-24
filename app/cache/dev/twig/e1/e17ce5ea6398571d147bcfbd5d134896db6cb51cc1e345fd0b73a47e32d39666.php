@@ -15,8 +15,8 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_227dcc8b9cd0a8aa9fcdce4c4f88ec594b92b70309feec44a47b1d85a801c7d6 = $this->env->getExtension("native_profiler");
-        $__internal_227dcc8b9cd0a8aa9fcdce4c4f88ec594b92b70309feec44a47b1d85a801c7d6->enter($__internal_227dcc8b9cd0a8aa9fcdce4c4f88ec594b92b70309feec44a47b1d85a801c7d6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@WebProfiler/Profiler/toolbar_js.html.twig"));
+        $__internal_f4a0ba33668648984451ab80e9f8eccbf1dba6a75cdcaa3c89d1ec0df9809356 = $this->env->getExtension("native_profiler");
+        $__internal_f4a0ba33668648984451ab80e9f8eccbf1dba6a75cdcaa3c89d1ec0df9809356->enter($__internal_f4a0ba33668648984451ab80e9f8eccbf1dba6a75cdcaa3c89d1ec0df9809356_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@WebProfiler/Profiler/toolbar_js.html.twig"));
 
         // line 1
         echo "<div id=\"sfwdt";
@@ -24,9 +24,9 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
         echo "\" class=\"sf-toolbar\" style=\"display: none\"></div>
 ";
         // line 2
-        $this->loadTemplate("@WebProfiler/Profiler/base_js.html.twig", "@WebProfiler/Profiler/toolbar_js.html.twig", 2)->display($context);
-        // line 3
-        echo "<script>/*<![CDATA[*/
+        echo twig_include($this->env, $context, "@WebProfiler/Profiler/base_js.html.twig");
+        echo "
+<script>/*<![CDATA[*/
     (function () {
         ";
         // line 5
@@ -103,12 +103,15 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
                         toolbarInfo.style.right = '';
                         toolbarInfo.style.left = '';
 
-                        if (leftValue > 0 && rightValue > 0) {
+                        if (elementWidth > pageWidth) {
+                            toolbarInfo.style.left = 0;
+                        }
+                        else if (leftValue > 0 && rightValue > 0) {
                             toolbarInfo.style.right = (rightValue * -1) + 'px';
                         } else if (leftValue < 0) {
                             toolbarInfo.style.left = 0;
                         } else {
-                            toolbarInfo.style.right = '-1px';
+                            toolbarInfo.style.right = '0px';
                         }
                     };
                 }
@@ -116,7 +119,7 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
             function(xhr) {
                 if (xhr.status !== 0) {
                     confirm('An error occurred while loading the web debug toolbar (' + xhr.status + ': ' + xhr.statusText + ').\\n\\nDo you want to open the profiler?') && (window.location = '";
-        // line 61
+        // line 64
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_profiler", array("token" => (isset($context["token"]) ? $context["token"] : $this->getContext($context, "token")))), "html", null, true);
         echo "');
                 }
@@ -127,7 +130,7 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
 /*]]>*/</script>
 ";
         
-        $__internal_227dcc8b9cd0a8aa9fcdce4c4f88ec594b92b70309feec44a47b1d85a801c7d6->leave($__internal_227dcc8b9cd0a8aa9fcdce4c4f88ec594b92b70309feec44a47b1d85a801c7d6_prof);
+        $__internal_f4a0ba33668648984451ab80e9f8eccbf1dba6a75cdcaa3c89d1ec0df9809356->leave($__internal_f4a0ba33668648984451ab80e9f8eccbf1dba6a75cdcaa3c89d1ec0df9809356_prof);
 
     }
 
@@ -143,11 +146,11 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
 
     public function getDebugInfo()
     {
-        return array (  120 => 61,  86 => 30,  82 => 29,  78 => 28,  73 => 26,  69 => 25,  65 => 24,  53 => 15,  49 => 14,  45 => 12,  35 => 6,  33 => 5,  29 => 3,  27 => 2,  22 => 1,);
+        return array (  123 => 64,  86 => 30,  82 => 29,  78 => 28,  73 => 26,  69 => 25,  65 => 24,  53 => 15,  49 => 14,  45 => 12,  35 => 6,  33 => 5,  27 => 2,  22 => 1,);
     }
 }
 /* <div id="sfwdt{{ token }}" class="sf-toolbar" style="display: none"></div>*/
-/* {% include '@WebProfiler/Profiler/base_js.html.twig' %}*/
+/* {{ include('@WebProfiler/Profiler/base_js.html.twig') }}*/
 /* <script>/*<![CDATA[*//* */
 /*     (function () {*/
 /*         {% if 'top' == position %}*/
@@ -194,12 +197,15 @@ class __TwigTemplate_443a9929b71d217011ce27cd4e9360015abb619db85c298e16fd98d17ca
 /*                         toolbarInfo.style.right = '';*/
 /*                         toolbarInfo.style.left = '';*/
 /* */
-/*                         if (leftValue > 0 && rightValue > 0) {*/
+/*                         if (elementWidth > pageWidth) {*/
+/*                             toolbarInfo.style.left = 0;*/
+/*                         }*/
+/*                         else if (leftValue > 0 && rightValue > 0) {*/
 /*                             toolbarInfo.style.right = (rightValue * -1) + 'px';*/
 /*                         } else if (leftValue < 0) {*/
 /*                             toolbarInfo.style.left = 0;*/
 /*                         } else {*/
-/*                             toolbarInfo.style.right = '-1px';*/
+/*                             toolbarInfo.style.right = '0px';*/
 /*                         }*/
 /*                     };*/
 /*                 }*/

@@ -124,6 +124,24 @@ UPGRADE FROM 2.x to 3.0
    ));
    ```
 
+ * The option "`virtual`" was renamed to "`inherit_data`".
+
+   Before:
+
+   ```php
+   $builder->add('address', 'form', array(
+       'virtual' => true,
+   ));
+   ```
+
+   After:
+
+   ```php
+   $builder->add('address', 'form', array(
+       'inherit_data' => true,
+   ));
+   ```
+
  * The method `AbstractType::setDefaultOptions(OptionsResolverInterface $resolver)` and
    `AbstractTypeExtension::setDefaultOptions(OptionsResolverInterface $resolver)` have been
    renamed. You should use `AbstractType::configureOptions(OptionsResolver $resolver)` and
@@ -203,24 +221,6 @@ UPGRADE FROM 2.x to 3.0
    $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
        // ...
    });
-   ```
-
- * The option "`virtual`" was renamed to "`inherit_data`".
-
-   Before:
-
-   ```php
-   $builder->add('address', 'form', array(
-       'virtual' => true,
-   ));
-   ```
-
-   After:
-
-   ```php
-   $builder->add('address', 'form', array(
-       'inherit_data' => true,
-   ));
    ```
 
  * The class `VirtualFormAwareIterator` was renamed to `InheritDataAwareIterator`.
@@ -600,6 +600,131 @@ UPGRADE FROM 2.x to 3.0
 ### Security
 
  * The `Resources/` directory was moved to `Core/Resources/`
+
+ * The `key` settings of `anonymous`, `remember_me` and `http_digest` are
+   renamed to `secret`.
+
+   Before:
+
+   ```yaml
+   security:
+       # ...
+       firewalls:
+           default:
+               # ...
+               anonymous: { key: "%secret%" }
+               remember_me:
+                   key: "%secret%"
+               http_digest:
+                   key: "%secret%"
+   ```
+
+   ```xml
+   <!-- ... -->
+   <config>
+       <!-- ... -->
+
+       <firewall>
+           <!-- ... -->
+
+           <anonymous key="%secret%"/>
+           <remember-me key="%secret%"/>
+           <http-digest key="%secret%"/>
+       </firewall>
+   </config>
+   ```
+
+   ```php
+   // ...
+   $container->loadFromExtension('security', array(
+       // ...
+       'firewalls' => array(
+           // ...
+           'anonymous' => array('key' => '%secret%'),
+           'remember_me' => array('key' => '%secret%'),
+           'http_digest' => array('key' => '%secret%'),
+       ),
+   ));
+   ```
+
+   After:
+
+   ```yaml
+   security:
+       # ...
+       firewalls:
+           default:
+               # ...
+               anonymous: { secret: "%secret%" }
+               remember_me:
+                   secret: "%secret%"
+               http_digest:
+                   secret: "%secret%"
+   ```
+
+   ```xml
+   <!-- ... -->
+   <config>
+       <!-- ... -->
+
+       <firewall>
+           <!-- ... -->
+
+           <anonymous secret="%secret%"/>
+           <remember-me secret="%secret%"/>
+           <http-digest secret="%secret%"/>
+       </firewall>
+   </config>
+   ```
+
+   ```php
+   // ...
+   $container->loadFromExtension('security', array(
+       // ...
+       'firewalls' => array(
+           // ...
+           'anonymous' => array('secret' => '%secret%'),
+           'remember_me' => array('secret' => '%secret%'),
+           'http_digest' => array('secret' => '%secret%'),
+       ),
+   ));
+  ```
+
+ * The `AbstractVoter::getSupportedAttributes()` and `AbstractVoter::getSupportedClasses()`
+   methods have been removed in favor of `AbstractVoter::supports()`.
+
+   Before:
+
+   ```php
+   class MyVoter extends AbstractVoter
+   {
+       protected function getSupportedAttributes()
+       {
+           return array('CREATE', 'EDIT');
+       }
+
+       protected function getSupportedClasses()
+       {
+           return array('AppBundle\Entity\Post');
+       }
+
+       // ...
+   }
+   ```
+
+   After:
+
+   ```php
+   class MyVoter extends AbstractVoter
+   {
+       protected function supports($attribute, $object)
+       {
+           return $object instanceof Post && in_array($attribute, array('CREATE', 'EDIT'));
+       }
+
+       // ...
+   }
+   ```
 
 ### Translator
 
@@ -1122,3 +1247,10 @@ UPGRADE FROM 2.x to 3.0
  * `Process::setStdin()` and `Process::getStdin()` have been removed. Use
    `Process::setInput()` and `Process::getInput()` that works the same way.
  * `Process::setInput()` and `ProcessBuilder::setInput()` do not accept non-scalar types.
+
+### Config
+
+ * `\Symfony\Component\Config\Resource\ResourceInterface::isFresh()` has been removed. Also,
+   cache validation through this method (which was still supported in 2.8 for BC) does no longer
+   work because the `\Symfony\Component\Config\Resource\BCResourceInterfaceChecker` helper class
+   has been removed as well.

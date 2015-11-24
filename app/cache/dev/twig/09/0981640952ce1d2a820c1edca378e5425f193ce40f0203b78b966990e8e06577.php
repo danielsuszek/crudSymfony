@@ -21,54 +21,70 @@ class __TwigTemplate_b214d7afd47c96a5e999dbacbf3f31b7e160d29ecadc8c8feb49dcbb0eb
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d1298443a8cf8d19e9eb165ccff4d9ae0eab61910d3efe6108ba4d2e4acc4a65 = $this->env->getExtension("native_profiler");
-        $__internal_d1298443a8cf8d19e9eb165ccff4d9ae0eab61910d3efe6108ba4d2e4acc4a65->enter($__internal_d1298443a8cf8d19e9eb165ccff4d9ae0eab61910d3efe6108ba4d2e4acc4a65_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@WebProfiler/Collector/memory.html.twig"));
+        $__internal_0c57843668af96550e2b1e2fdc875082cf5aad59330f9622c823e7ff73edcf69 = $this->env->getExtension("native_profiler");
+        $__internal_0c57843668af96550e2b1e2fdc875082cf5aad59330f9622c823e7ff73edcf69->enter($__internal_0c57843668af96550e2b1e2fdc875082cf5aad59330f9622c823e7ff73edcf69_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@WebProfiler/Collector/memory.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d1298443a8cf8d19e9eb165ccff4d9ae0eab61910d3efe6108ba4d2e4acc4a65->leave($__internal_d1298443a8cf8d19e9eb165ccff4d9ae0eab61910d3efe6108ba4d2e4acc4a65_prof);
+        $__internal_0c57843668af96550e2b1e2fdc875082cf5aad59330f9622c823e7ff73edcf69->leave($__internal_0c57843668af96550e2b1e2fdc875082cf5aad59330f9622c823e7ff73edcf69_prof);
 
     }
 
     // line 3
     public function block_toolbar($context, array $blocks = array())
     {
-        $__internal_282ef3d1d6ad8fc07f3eddd661afea1a5962c741fb6e59c8ccddbe47040eb8ef = $this->env->getExtension("native_profiler");
-        $__internal_282ef3d1d6ad8fc07f3eddd661afea1a5962c741fb6e59c8ccddbe47040eb8ef->enter($__internal_282ef3d1d6ad8fc07f3eddd661afea1a5962c741fb6e59c8ccddbe47040eb8ef_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "toolbar"));
+        $__internal_b4d00c556080c05d3a73372a26b36235a01d2e6162f31e08c428305a0369cf5f = $this->env->getExtension("native_profiler");
+        $__internal_b4d00c556080c05d3a73372a26b36235a01d2e6162f31e08c428305a0369cf5f->enter($__internal_b4d00c556080c05d3a73372a26b36235a01d2e6162f31e08c428305a0369cf5f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "toolbar"));
 
         // line 4
         echo "    ";
         ob_start();
         // line 5
-        echo "        <span>
-            <svg width=\"13\" height=\"28\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 13 28\" enable-background=\"new 0 0 13 28\" xml:space=\"preserve\"><g><rect x=\"3\" y=\"11\" fill=\"#BCBCBB\" width=\"7\" height=\"9\"/></g><g><path fill=\"#3F3F3F\" d=\"M11 6V21H2V6H0V22c0 0.6 0.4 1 1 1h11c0.6 0 1-0.4 1-1V6H11z\"/></g></svg>
-            <span>";
+        echo "        ";
+        $context["status_color"] = ((((($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memory", array()) / 1024) / 1024) > 50)) ? ("yellow") : (""));
+        // line 6
+        echo "        ";
+        echo twig_include($this->env, $context, "@WebProfiler/Icon/memory.svg");
+        echo "
+        <span class=\"sf-toolbar-value\">";
         // line 7
         echo twig_escape_filter($this->env, sprintf("%.1f", (($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memory", array()) / 1024) / 1024)), "html", null, true);
-        echo " MB</span>
-        </span>
+        echo "</span>
+        <span class=\"sf-toolbar-label\">MB</span>
     ";
         $context["icon"] = ('' === $tmp = ob_get_clean()) ? '' : new Twig_Markup($tmp, $this->env->getCharset());
         // line 10
-        echo "    ";
-        ob_start();
+        echo "
+    ";
         // line 11
+        ob_start();
+        // line 12
         echo "        <div class=\"sf-toolbar-info-piece\">
-            <b>Memory usage</b>
+            <b>Peak memory usage</b>
             <span>";
-        // line 13
+        // line 14
         echo twig_escape_filter($this->env, sprintf("%.1f", (($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memory", array()) / 1024) / 1024)), "html", null, true);
-        echo " / ";
-        echo ((($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memoryLimit", array()) ==  -1)) ? ("&infin;") : (twig_escape_filter($this->env, sprintf("%.1f", (($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memoryLimit", array()) / 1024) / 1024)))));
         echo " MB</span>
+        </div>
+
+        <div class=\"sf-toolbar-info-piece\">
+            <b>PHP memory limit</b>
+            <span>";
+        // line 19
+        echo twig_escape_filter($this->env, ((($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memoryLimit", array()) ==  -1)) ? ("Unlimited") : (sprintf("%.0f MB", (($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "memoryLimit", array()) / 1024) / 1024)))), "html", null, true);
+        echo "</span>
         </div>
     ";
         $context["text"] = ('' === $tmp = ob_get_clean()) ? '' : new Twig_Markup($tmp, $this->env->getCharset());
-        // line 16
-        echo "    ";
-        $this->loadTemplate("@WebProfiler/Profiler/toolbar_item.html.twig", "@WebProfiler/Collector/memory.html.twig", 16)->display(array_merge($context, array("link" => false)));
+        // line 22
+        echo "
+    ";
+        // line 23
+        echo twig_include($this->env, $context, "@WebProfiler/Profiler/toolbar_item.html.twig", array("link" => (isset($context["profiler_url"]) ? $context["profiler_url"] : $this->getContext($context, "profiler_url")), "name" => "time", "status" => (isset($context["status_color"]) ? $context["status_color"] : $this->getContext($context, "status_color"))));
+        echo "
+";
         
-        $__internal_282ef3d1d6ad8fc07f3eddd661afea1a5962c741fb6e59c8ccddbe47040eb8ef->leave($__internal_282ef3d1d6ad8fc07f3eddd661afea1a5962c741fb6e59c8ccddbe47040eb8ef_prof);
+        $__internal_b4d00c556080c05d3a73372a26b36235a01d2e6162f31e08c428305a0369cf5f->leave($__internal_b4d00c556080c05d3a73372a26b36235a01d2e6162f31e08c428305a0369cf5f_prof);
 
     }
 
@@ -84,24 +100,31 @@ class __TwigTemplate_b214d7afd47c96a5e999dbacbf3f31b7e160d29ecadc8c8feb49dcbb0eb
 
     public function getDebugInfo()
     {
-        return array (  68 => 16,  60 => 13,  56 => 11,  53 => 10,  47 => 7,  43 => 5,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  83 => 23,  80 => 22,  74 => 19,  66 => 14,  62 => 12,  60 => 11,  57 => 10,  51 => 7,  46 => 6,  43 => 5,  40 => 4,  34 => 3,  11 => 1,);
     }
 }
 /* {% extends '@WebProfiler/Profiler/layout.html.twig' %}*/
 /* */
 /* {% block toolbar %}*/
 /*     {% set icon %}*/
-/*         <span>*/
-/*             <svg width="13" height="28" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 13 28" enable-background="new 0 0 13 28" xml:space="preserve"><g><rect x="3" y="11" fill="#BCBCBB" width="7" height="9"/></g><g><path fill="#3F3F3F" d="M11 6V21H2V6H0V22c0 0.6 0.4 1 1 1h11c0.6 0 1-0.4 1-1V6H11z"/></g></svg>*/
-/*             <span>{{ '%.1f'|format(collector.memory / 1024 / 1024) }} MB</span>*/
-/*         </span>*/
+/*         {% set status_color = (collector.memory / 1024 / 1024) > 50 ? 'yellow' : '' %}*/
+/*         {{ include('@WebProfiler/Icon/memory.svg') }}*/
+/*         <span class="sf-toolbar-value">{{ '%.1f'|format(collector.memory / 1024 / 1024) }}</span>*/
+/*         <span class="sf-toolbar-label">MB</span>*/
 /*     {% endset %}*/
+/* */
 /*     {% set text %}*/
 /*         <div class="sf-toolbar-info-piece">*/
-/*             <b>Memory usage</b>*/
-/*             <span>{{ '%.1f'|format(collector.memory / 1024 / 1024) }} / {{ collector.memoryLimit == -1 ? '&infin;' : '%.1f'|format(collector.memoryLimit / 1024 / 1024)|escape }} MB</span>*/
+/*             <b>Peak memory usage</b>*/
+/*             <span>{{ '%.1f'|format(collector.memory / 1024 / 1024) }} MB</span>*/
+/*         </div>*/
+/* */
+/*         <div class="sf-toolbar-info-piece">*/
+/*             <b>PHP memory limit</b>*/
+/*             <span>{{ collector.memoryLimit == -1 ? 'Unlimited' : '%.0f MB'|format(collector.memoryLimit / 1024 / 1024) }}</span>*/
 /*         </div>*/
 /*     {% endset %}*/
-/*     {% include '@WebProfiler/Profiler/toolbar_item.html.twig' with { 'link': false } %}*/
+/* */
+/*     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: profiler_url, name: 'time', status: status_color }) }}*/
 /* {% endblock %}*/
 /* */
